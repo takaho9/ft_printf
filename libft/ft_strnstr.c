@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/29 06:13:16 by ttakemur          #+#    #+#             */
-/*   Updated: 2026/04/30 02:49:14 by ttakemur         ###   ########.fr       */
+/*   Created: 2026/04/25 13:46:22 by ttakemur          #+#    #+#             */
+/*   Updated: 2026/04/27 00:17:02 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putnbr(int n)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	size_t	count;
-	long	num;
+	size_t	needle_len;
+	size_t	i;
 
-	count = 0;
-	num = n;
-	if (num < 0)
+	if (!*needle)
+		return ((char *)haystack);
+	needle_len = ft_strlen(needle);
+	i = 0;
+	while (i + needle_len <= len && haystack[i])
 	{
-		num = -num;
-		count += ft_putchar('-');
+		if (ft_strncmp(haystack + i, needle, needle_len) == 0)
+			return ((char *)haystack + i);
+		i++;
 	}
-	if (num >= 10)
-		count += ft_putnbr(num / 10);
-	count += ft_putchar('0' + num % 10);
-	return (count);
+	return (NULL);
 }

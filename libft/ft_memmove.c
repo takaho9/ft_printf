@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/29 06:13:16 by ttakemur          #+#    #+#             */
-/*   Updated: 2026/04/30 02:49:14 by ttakemur         ###   ########.fr       */
+/*   Created: 2026/04/24 21:15:48 by ttakemur          #+#    #+#             */
+/*   Updated: 2026/04/27 00:32:16 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putnbr(int n)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	size_t	count;
-	long	num;
+	unsigned char		*d;
+	const unsigned char	*s;
 
-	count = 0;
-	num = n;
-	if (num < 0)
+	d = (unsigned char *)dest;
+	s = (const unsigned char *)src;
+	if (d > s)
 	{
-		num = -num;
-		count += ft_putchar('-');
+		while (n--)
+			d[n] = s[n];
 	}
-	if (num >= 10)
-		count += ft_putnbr(num / 10);
-	count += ft_putchar('0' + num % 10);
-	return (count);
+	else
+	{
+		while (n--)
+			*d++ = *s++;
+	}
+	return (dest);
 }

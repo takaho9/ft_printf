@@ -6,15 +6,16 @@
 /*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 06:13:16 by ttakemur          #+#    #+#             */
-/*   Updated: 2026/04/29 06:14:55 by ttakemur         ###   ########.fr       */
+/*   Updated: 2026/04/30 02:49:14 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <unistd.h>
+# include "libft.h"
 # include <stdarg.h>
+# include <unistd.h>
 
 int	ft_printf(const char *fmt, ...);
 int	ft_handle_specifier(va_list ap, char spec);

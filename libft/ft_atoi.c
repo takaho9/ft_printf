@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/29 06:13:16 by ttakemur          #+#    #+#             */
-/*   Updated: 2026/04/30 02:49:14 by ttakemur         ###   ########.fr       */
+/*   Created: 2026/04/25 13:44:03 by ttakemur          #+#    #+#             */
+/*   Updated: 2026/04/27 00:17:02 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putnbr(int n)
+static int	ft_isspace(char c)
 {
-	size_t	count;
-	long	num;
+	return (c == ' ' || (c >= '\t' && c <= '\r'));
+}
 
-	count = 0;
-	num = n;
-	if (num < 0)
+int	ft_atoi(const char *str)
+{
+	int	sign;
+	int	num;
+
+	sign = 1;
+	num = 0;
+	while (*str && ft_isspace(*str))
+		str++;
+	if (*str == '+')
+		str++;
+	else if (*str == '-')
 	{
-		num = -num;
-		count += ft_putchar('-');
+		str++;
+		sign = -1;
 	}
-	if (num >= 10)
-		count += ft_putnbr(num / 10);
-	count += ft_putchar('0' + num % 10);
-	return (count);
+	while (ft_isdigit(*str))
+		num = num * 10 + (*str++ - '0');
+	return (num * sign);
 }

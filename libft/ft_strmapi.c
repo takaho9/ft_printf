@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/29 06:13:16 by ttakemur          #+#    #+#             */
-/*   Updated: 2026/04/30 02:49:14 by ttakemur         ###   ########.fr       */
+/*   Created: 2026/04/26 18:58:14 by ttakemur          #+#    #+#             */
+/*   Updated: 2026/04/27 00:17:02 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putnbr(int n)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	count;
-	long	num;
+	unsigned int	len;
+	char			*applied;
 
-	count = 0;
-	num = n;
-	if (num < 0)
+	len = ft_strlen(s);
+	applied = ft_calloc(sizeof(char), (len + 1));
+	if (applied == NULL)
+		return (NULL);
+	while (len--)
 	{
-		num = -num;
-		count += ft_putchar('-');
+		applied[len] = f(len, s[len]);
 	}
-	if (num >= 10)
-		count += ft_putnbr(num / 10);
-	count += ft_putchar('0' + num % 10);
-	return (count);
+	return (applied);
 }

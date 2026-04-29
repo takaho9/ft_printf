@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/29 06:13:16 by ttakemur          #+#    #+#             */
-/*   Updated: 2026/04/30 02:49:14 by ttakemur         ###   ########.fr       */
+/*   Created: 2026/04/26 17:58:05 by ttakemur          #+#    #+#             */
+/*   Updated: 2026/04/27 00:34:08 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putnbr(int n)
+char	*ft_itoa(int n)
 {
-	size_t	count;
+	char	buf[11];
 	long	num;
+	size_t	i;
 
-	count = 0;
+	ft_memset(buf, (int) '0', 11);
 	num = n;
 	if (num < 0)
-	{
 		num = -num;
-		count += ft_putchar('-');
+	i = 10;
+	while (num != 0)
+	{
+		buf[i--] = (num % 10) + '0';
+		num /= 10;
 	}
-	if (num >= 10)
-		count += ft_putnbr(num / 10);
-	count += ft_putchar('0' + num % 10);
-	return (count);
+	if (n < 0)
+		buf[i] = '-';
+	i = 0;
+	while (buf[i] == '0' && i < 10)
+		i++;
+	return (ft_substr(buf, i, 11 - i));
 }

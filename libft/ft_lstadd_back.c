@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/29 06:13:16 by ttakemur          #+#    #+#             */
-/*   Updated: 2026/04/30 02:49:14 by ttakemur         ###   ########.fr       */
+/*   Created: 2026/04/26 20:43:45 by ttakemur          #+#    #+#             */
+/*   Updated: 2026/04/27 00:38:32 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putnbr(int n)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	size_t	count;
-	long	num;
+	t_list	*last;
 
-	count = 0;
-	num = n;
-	if (num < 0)
+	if (*lst == NULL)
 	{
-		num = -num;
-		count += ft_putchar('-');
+		*lst = new;
+		return ;
 	}
-	if (num >= 10)
-		count += ft_putnbr(num / 10);
-	count += ft_putchar('0' + num % 10);
-	return (count);
+	last = ft_lstlast(*lst);
+	last->next = new;
 }
