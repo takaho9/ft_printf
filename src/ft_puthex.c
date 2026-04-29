@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_puthex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/29 06:14:16 by ttakemur          #+#    #+#             */
-/*   Updated: 2026/04/29 06:14:33 by ttakemur         ###   ########.fr       */
+/*   Created: 2026/04/29 06:13:16 by ttakemur          #+#    #+#             */
+/*   Updated: 2026/04/29 06:13:16 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_printf(const char *fmt, ...) {
-    (void)fmt;
-    return 0;
+int	ft_puthex(unsigned long n, int upper)
+{
 }
