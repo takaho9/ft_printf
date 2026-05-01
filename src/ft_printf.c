@@ -6,7 +6,7 @@
 /*   By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 06:14:16 by ttakemur          #+#    #+#             */
-/*   Updated: 2026/04/30 02:49:14 by ttakemur         ###   ########.fr       */
+/*   Updated: 2026/05/02 01:14:18 by ttakemur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_handle_specifier(va_list ap, char spec)
 	else if (spec == '%')
 		return (ft_putchar('%'));
 	else
-		return (ft_putchar('%') + ft_putchar(va_arg(ap, int)));
+		return (ft_putchar('%') + ft_putchar(spec));
 }
 
 int	ft_printf(const char *fmt, ...)
