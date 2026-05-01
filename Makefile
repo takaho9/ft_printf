@@ -6,7 +6,7 @@
 #    By: ttakemur <ttakemur@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/23 21:14:32 by ttakemur          #+#    #+#              #
-#    Updated: 2026/04/30 00:44:29 by ttakemur         ###   ########.fr        #
+#    Updated: 2026/05/02 01:31:14 by ttakemur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME := libftprintf.a
 CC := cc
 LIBFT_DIR := libft
 LIBFT := $(LIBFT_DIR)/libft.a
-CFLAGS := -Wall -Wextra -Werror -I $(LIBFT_DIR)
+CFLAGS := -Wall -Wextra -Werror -I $(LIBFT_DIR) -I includes
 
 SRC_DIR := src
 SRCS := $(SRC_DIR)/ft_printf.c \
@@ -27,16 +27,18 @@ SRCS := $(SRC_DIR)/ft_printf.c \
 
 OBJS := $(SRCS:.c=.o)
 
+HEADERS := includes/ft_printf.h
+
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJS)
+$(NAME): $(OBJS) $(LIBFT)
 	cp $(LIBFT) $(NAME)
 	ar rcs $(NAME) $(OBJS)
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
-%.o: %.c
+%.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
